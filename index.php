@@ -70,6 +70,7 @@
 
 							//delete one record
 							echo "<a href='#' onclick='delete_user({$id});' class='btn btn-danger'> Excluir </a>";
+						echo "</td>";
 					echo "</tr>";
 				}
 
