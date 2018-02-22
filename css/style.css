@@ -2,3 +2,19 @@
 	display: block;
     margin-top: 15px;
 }
+
+.m-r-1em {
+	margin-right: 1em;
+}
+
+.m-b-1em {
+	margin-bottm: 1em;
+}
+
+.m-l-1em {
+	margin-left: 1em;
+}
+
+.m-t-0 {
+	margin-top: 0;
+}
