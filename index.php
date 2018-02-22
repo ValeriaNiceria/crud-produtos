@@ -37,7 +37,7 @@
 		if ($num > 0) {
 
 			//data from database will be here
-			echo "<table class='table'>";
+			echo "<table class='table table-hover table-responsive'>";
 
 				//table heading
 				echo "<tr>";
@@ -49,6 +49,29 @@
 				echo "</tr>";
 
 				//table body
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+					//extract row
+					//this will make $row['firstname'] to
+					//just $firstname only
+					extract($row);
+
+					//creating new table row per record
+					echo "<tr>";
+						echo "<td>{$id}</td>";
+						echo "<td>{$nome}</td>";
+						echo "<td>{$descricao}</td>";
+						echo "<td>R&#36; {$preco}</td>";
+						echo "<td>";
+							//read one record
+							echo "<a href='read_one.php?id={$id}' class='btn btn-info m-r-1em'> Ver </a>";
+
+							//edit one record
+							echo "<a href='update.php?id={$id}' class='btn btn-primary m-r-1em'> Editar </a>";
+
+							//delete one record
+							echo "<a href='#' onclick='delete_user({$id});' class='btn btn-danger'> Excluir </a>";
+					echo "</tr>";
+				}
 
 			//end table
 			echo "</table>";
