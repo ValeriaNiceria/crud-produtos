@@ -7,7 +7,9 @@ $username = "root";
 $password = "54321";
 
 try {
-	$con = new PDO("mysql:host={$host};db_name={$db_name}", $username, $password);
+	$conexao = new PDO("mysql:dbname=" . $db_name . ";host=" . $host, $username, $password);
+	
+	$conexao->exec("SET NAMES 'utf8'");
 } 
 //show errors
 catch (PDOException $exception) {
@@ -15,3 +17,6 @@ catch (PDOException $exception) {
 }
 
 ?>
+
+
+
