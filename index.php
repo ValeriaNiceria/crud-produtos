@@ -36,6 +36,23 @@
 		//check if more that 0 record found
 		if ($num > 0) {
 
+			//data from database will be here
+			echo "<table class='table'>";
+
+				//table heading
+				echo "<tr>";
+					echo "<th>ID</th>";
+					echo "<th>Nome</th>";
+					echo "<th>Descrição</th>";
+					echo "<th>Preço</th>";
+					echo "<th>Opções</th>";
+				echo "</tr>";
+
+				//table body
+
+			//end table
+			echo "</table>";
+
 		} 
 		//if no records found
 		else {
