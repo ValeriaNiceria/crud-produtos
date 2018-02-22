@@ -53,6 +53,33 @@
 
 		?>
 
+		<!-- display record details -->
+		<table class='table table-hover table-responsive'>
+
+			<tr>
+				<td><strong>Nome</strong></td>
+				<td><?php echo htmlspecialchars($nome, ENT_QUOTES); ?></td>
+			</tr>
+
+			<tr>
+				<td><strong>Descrição</strong></td>
+				<td><?php echo htmlspecialchars($descricao, ENT_QUOTES); ?></td>
+			</tr>
+
+			<tr>
+				<td><strong>Preço</strong></td>
+				<td><?php echo htmlspecialchars($preco, ENT_QUOTES); ?></td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td>
+					<a href="index.php" class="btn btn-danger pull-right"> Voltar para lista de produtos </a>
+				</td>
+			</tr>
+
+		</table>
+
 	</div>
 
 
