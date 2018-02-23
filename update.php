@@ -6,7 +6,7 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<!-- Style CSS -->
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -49,6 +49,28 @@
 			die('Erro: ' . $exception->getMessage());
 		}
 		?>
+
+		<!-- Form -->
+		<!-- HTML form to update a record -->
+		<form action="<?php echo htmlspecialchars($_SESSION['PHP_SELF'] . 'id={$id}'); ?>" method="POST" class="form-group">
+
+			<label for="nome">Nome</label>
+			<input type="text" name="nome" id="nome" value="<?php echo htmlspecialchars($nome, ENT_QUOTES); ?>" class="form-control"/>
+
+			<label for="descricao">Descrição</label>
+			<textarea name="desc" id="descricao" class="form-control">
+				<?php echo htmlspecialchars($descricao, ENT_QUOTES); ?>	
+			</textarea>
+
+			<label for="preco">Preço</label>
+			<input type="text" name="preco" id="preco" value="<?php echo htmlspecialchars($preco, ENT_QUOTES); ?>" class="form-control"/>
+
+			<div class="pull-right margin-top-1">
+				<input type="submit" value="Salvar" class="btn btn-primary"/>
+				<a href="index.php" class="btn btn-danger">Voltar para lista de produtos</a>
+			</div>	
+		</form>
+
 
 	</div>
 	
