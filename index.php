@@ -22,6 +22,14 @@
 		//include database connection
 		require_once("config/database.php");
 
+		//delete message prompt
+		$action = isset($_GET['action']) ? $_GET['action'] : '';
+
+		//if it was redirected from delete.php
+		if ($action == 'deleted') {
+			echo "<div class='alert alert-success'> Registro foi excluído. </div>";
+		}
+
 		//select all data
 		$query = ("SELECT id, nome, descricao, preco FROM produtos ORDER BY id DESC");
 		$stmt = $conexao->prepare($query);
