@@ -101,5 +101,19 @@
 <script src="js/jquery-3.2.1.min.js"></script>
 <!--JavaScript-->
 <script src="js/bootstrap.min.js"></script>
+
+<!-- JavaScript to confirm record deletion -->
+<script>
+//confirm record deletion
+function delete_user( id ) {
+	var answer = confirm('Você tem certeza?');
+	if (answer) {
+		//if user clicked ok
+		//pass the id to delete.php and execute the delete query
+		window.location = 'delete.php?id=' + id;
+	}
+}
+</script>
+
 </body>
 </html>
