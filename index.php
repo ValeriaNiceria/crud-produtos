@@ -111,6 +111,11 @@
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
 			$total_rows = $row['total_rows'];
 
+
+			//paginate records
+			$page_url = "index.php?";
+			require_once("paging.php");
+
 		} 
 		//if no records found
 		else {
