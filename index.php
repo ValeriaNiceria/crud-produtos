@@ -27,7 +27,7 @@
 
 		//if it was redirected from delete.php
 		if ($action == 'deleted') {
-			echo "<div class='alert alert-success'> Registro foi excluído. </div>";
+			echo "<div class='alert alert-success'> Registro foi excluído com sucesso. </div>";
 		}
 
 		//select all data
