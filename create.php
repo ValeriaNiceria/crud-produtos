@@ -32,9 +32,12 @@ require_once("config/database.php");
 				$descricao = (isset($_POST['descricao']) ? htmlspecialchars(strip_tags($_POST['descricao'])) : '');
 				$preco = (isset($_POST['preco']) ? htmlspecialchars(strip_tags($_POST['preco'])) : '');
 				$criado = date('Y-m-d H:i:s');
+				//new 'image' field
+				$imagem = !empty($_FILES['imagem']["name"]) ? sha1_file($_FILES['imagem']['tmp_name']) . "-" . basename($FILES['imagem']['name']) : "" ;
+				$imagem = htmlspecialchars(strip_tags($imagem));
 
 				// insert query
-				$query = ("INSERT INTO produtos (nome, descricao, preco, criado) VALUES (:NOME, :DESCRICAO, :PRECO, :CRIADO)");
+				$query = ("INSERT INTO produtos (nome, descricao, preco, criado, imagem) VALUES (:NOME, :DESCRICAO, :PRECO, :CRIADO, :IMAGEM)");
 
 				// prepare query for execution
 				$stmt = $conexao->prepare($query);
@@ -44,6 +47,7 @@ require_once("config/database.php");
 		        $stmt->bindParam(':DESCRICAO', $descricao);
 		        $stmt->bindParam(':PRECO', $preco);
 		        $stmt->bindParam(':CRIADO', $criado);
+		        $stmt->bindParam(":IMAGEM", $imagem);
 		 		
 		 		// Execute the query
 		        if ($stmt->execute()) {
