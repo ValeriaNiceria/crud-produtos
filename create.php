@@ -60,6 +60,14 @@ require_once("config/database.php");
 
 		        		//error message is empty
 		        		$file_upload_error_messages = "";
+
+		        		//make sure that file is a real image
+		        		$check = getimagesize($_FILES['imagem']['tmp_name']);
+		        		if ($check !== false) {
+		        			//submitted file is an image
+		        		} else {
+		        			$file_upload_error_messages.="<div> O arquivo enviado não é uma imagem. </div>";
+		        		}
 		        	}
 		            $msg_success = "Registro salvo com sucesso.";
 		        } else {
