@@ -51,6 +51,16 @@ require_once("config/database.php");
 		 		
 		 		// Execute the query
 		        if ($stmt->execute()) {
+		        	//now, if image is not empty, try to upload the image
+		        	if ($imagem) {
+		        		//sha1_file() function is used to make a unique file name
+		        		$target_directory = "uploads/";
+		        		$target_file = $target_directory . $imagem;
+		        		$file_type = pathinfo($target_file, PATHINFO_EXTENSION);
+
+		        		//error message is empty
+		        		$file_upload_error_messages = "";
+		        	}
 		            $msg_success = "Registro salvo com sucesso.";
 		        } else {
 		            $msg_erro = "Erro ao tentar salvar o registro.";
