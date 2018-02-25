@@ -61,6 +61,23 @@ require_once("config/database.php");
 		        		//error message is empty
 		        		$file_upload_error_messages = "";
 
+
+		        		//make sure certain file types are allowed
+		        		$allowed_file_types = array("jpg", "jpeg", "png", "gif");
+		        		if (!in_array($file_type, $allowed_file_types)) {
+		        			$file_upload_error_messages.="<div>Somente arquivos JPG, JPEG, PNG, GIF serão aceitos.</div>";
+		        		}
+
+		        		//make sure file does not exist
+		        		if (file_exists($target_file)) {
+		        			$file_upload_error_messages.="<div>A imagem já existe. Tente alterar o nome do arquivo.</div>";
+		        		}
+
+		        		//make sure submitted file is not too large, can't be larger than 1 MB
+		        		$($_FILES['imagem']['size'] > (1024000)) {
+		        			$file_upload_error_messages.="<div>A imagem deve possuir menos de 1MB de tamanho.</div>";
+		        		}
+
 		        		//make sure that file is a real image
 		        		$check = getimagesize($_FILES['imagem']['tmp_name']);
 		        		if ($check !== false) {
