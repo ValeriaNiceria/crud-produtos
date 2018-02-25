@@ -73,8 +73,14 @@ require_once("config/database.php");
 		        			$file_upload_error_messages.="<div>A imagem já existe. Tente alterar o nome do arquivo.</div>";
 		        		}
 
+		        		//make sure the 'uploads' folder exists
+		        		//if not, create it
+		        		if (!is_dir($target_directory)) {
+		        			makdir($target_directory, 0777, true);
+		        		}
+
 		        		//make sure submitted file is not too large, can't be larger than 1 MB
-		        		$($_FILES['imagem']['size'] > (1024000)) {
+		        		if($_FILES['imagem']['size'] > (1024000)) {
 		        			$file_upload_error_messages.="<div>A imagem deve possuir menos de 1MB de tamanho.</div>";
 		        		}
 
