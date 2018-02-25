@@ -28,7 +28,7 @@
 		$page = isset($_GET['page']) ? $_GET['page'] : 1;
 
 		//set records or rows of data per page
-		$records_per_page = 5;
+		$records_per_page = 4;
 
 		//calculate for the query LIMIT clause
 		$from_record_num = ($records_per_page * $page) - $records_per_page;
@@ -42,11 +42,14 @@
 			echo "<div class='alert alert-success'> Registro foi excluído com sucesso. </div>";
 		}
 
-		//select data for current page
-		$query = ("SELECT id, nome, descricao, preco FROM produtos ORDER BY id DESC LIMIT :FROM_RECORD_NUM, :RECORDS_PER_PAGE");
+
+		// select data for current page
+		$query = "SELECT id, nome, descricao, preco FROM produtos ORDER BY id DESC
+		    LIMIT :FROM_RECORD_NUM, :RECORDS_PER_PAGE";
+		 
 		$stmt = $conexao->prepare($query);
-		$stmt->bindParam(':FROM_RECORD_NUM', $from_record_num, PDO::PARAM_INT);
-		$stmt->bindParam(':RECORDS_PER_PAGE', $records_per_page, PDO::PARAM_INT);
+		$stmt->bindParam(":FROM_RECORD_NUM", $from_record_num, PDO::PARAM_INT);
+		$stmt->bindParam(":RECORDS_PER_PAGE", $records_per_page, PDO::PARAM_INT);
 		$stmt->execute();
 
 		//this is how to get numbers of rows returned
@@ -99,22 +102,21 @@
 			//end table
 			echo "</table>";
 
-			//PAGINATION
-			//count total number of rows
-			$query = ("SELECT COUNT(*) as total_rows FROM produtos");
-			$stmt = $con->prepare($query);
-
-			//execute query
+			// PAGINATION
+			// count total number of rows
+			$query = "SELECT COUNT(*) as total_rows FROM produtos";
+			$stmt = $conexao->prepare($query);
+			 
+			// execute query
 			$stmt->execute();
-
-			//get total rows
+			 
+			// get total rows
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
 			$total_rows = $row['total_rows'];
 
-
-			//paginate records
+			// paginate records
 			$page_url = "index.php?";
-			require_once("paging.php");
+			include_once ("paging.php");
 
 		} 
 		//if no records found
