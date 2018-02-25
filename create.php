@@ -32,9 +32,17 @@ require_once("config/database.php");
 				$descricao = (isset($_POST['descricao']) ? htmlspecialchars(strip_tags($_POST['descricao'])) : '');
 				$preco = (isset($_POST['preco']) ? htmlspecialchars(strip_tags($_POST['preco'])) : '');
 				$criado = date('Y-m-d H:i:s');
-				//new 'image' field
-				$imagem = !empty($_FILES['imagem']["name"]) ? sha1_file($_FILES['imagem']['tmp_name']) . "-" . basename($FILES['imagem']['name']) : "" ;
-				$imagem = htmlspecialchars(strip_tags($imagem));
+				$imagem = $_FILES['imagem'];
+
+				if ($imagem["error"]) {
+			       throw new Exception ("Error: " . $file["error"]);
+			    }
+
+				$dirUploads = "uploads";
+
+				if (!is_dir($dirUploads)) { 
+			        mkdir($dirUploads) or die ("Não foi possível criar a pasta!");
+			    }
 
 				// insert query
 				$query = ("INSERT INTO produtos (nome, descricao, preco, criado, imagem) VALUES (:NOME, :DESCRICAO, :PRECO, :CRIADO, :IMAGEM)");
@@ -47,50 +55,15 @@ require_once("config/database.php");
 		        $stmt->bindParam(':DESCRICAO', $descricao);
 		        $stmt->bindParam(':PRECO', $preco);
 		        $stmt->bindParam(':CRIADO', $criado);
-		        $stmt->bindParam(":IMAGEM", $imagem);
+		        $stmt->bindParam(":IMAGEM", $imagem['name']);
 		 		
 		 		// Execute the query
 		        if ($stmt->execute()) {
-		        	//now, if image is not empty, try to upload the image
-		        	if ($imagem) {
-		        		//sha1_file() function is used to make a unique file name
-		        		$target_directory = "uploads/";
-		        		$target_file = $target_directory . $imagem;
-		        		$file_type = pathinfo($target_file, PATHINFO_EXTENSION);
-
-		        		//error message is empty
-		        		$file_upload_error_messages = "";
-
-
-		        		//make sure certain file types are allowed
-		        		$allowed_file_types = array("jpg", "jpeg", "png", "gif");
-		        		if (!in_array($file_type, $allowed_file_types)) {
-		        			$file_upload_error_messages.="<div>Somente arquivos JPG, JPEG, PNG, GIF serão aceitos.</div>";
-		        		}
-
-		        		//make sure file does not exist
-		        		if (file_exists($target_file)) {
-		        			$file_upload_error_messages.="<div>A imagem já existe. Tente alterar o nome do arquivo.</div>";
-		        		}
-
-		        		//make sure the 'uploads' folder exists
-		        		//if not, create it
-		        		if (!is_dir($target_directory)) {
-		        			makdir($target_directory, 0777, true);
-		        		}
-
-		        		//make sure submitted file is not too large, can't be larger than 1 MB
-		        		if($_FILES['imagem']['size'] > (1024000)) {
-		        			$file_upload_error_messages.="<div>A imagem deve possuir menos de 1MB de tamanho.</div>";
-		        		}
-
-		        		//make sure that file is a real image
-		        		$check = getimagesize($_FILES['imagem']['tmp_name']);
-		        		if ($check !== false) {
-		        			//submitted file is an image
-		        		} else {
-		        			$file_upload_error_messages.="<div> O arquivo enviado não é uma imagem. </div>";
-		        		}
+		        	if (move_uploaded_file($imagem['tmp_name'], $dirUploads . DIRECTORY_SEPARATOR . $imagem['name'])) {
+		        		echo "<div class='alert alert-success'>Upload realizado com sucesso!</div>";
+		        	} else {
+		        		throw new Exception("Não foi possível realizar o upload");
+		        		
 		        	}
 		            $msg_success = "Registro salvo com sucesso.";
 		        } else {
