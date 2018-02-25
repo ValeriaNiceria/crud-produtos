@@ -21,7 +21,7 @@
 		<?php
 		//include database connection
 		require_once("config/database.php");
-		
+
 
 		//PAGINATION VARIABLES
 		//page is the current page, if there's nothing set, default is page 1
@@ -42,9 +42,11 @@
 			echo "<div class='alert alert-success'> Registro foi excluído com sucesso. </div>";
 		}
 
-		//select all data
-		$query = ("SELECT id, nome, descricao, preco FROM produtos ORDER BY id DESC");
+		//select data for current page
+		$query = ("SELECT id, nome, descricao, preco FROM produtos ORDER BY id DESC LIMIT :FROM_RECORD_NUM, :RECORDS_PER_PAGE");
 		$stmt = $conexao->prepare($query);
+		$stmt->bindParam(':FROM_RECORD_NUM', $from_record_num, PDO::PARAM_INT);
+		$stmt->bindParam(':RECORDS_PER_PAGE', $records_per_page, PDO::PARAM_INT);
 		$stmt->execute();
 
 		//this is how to get numbers of rows returned
