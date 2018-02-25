@@ -66,7 +66,7 @@ require_once("config/database.php");
 		?>
 
 		<!-- Form -->
-		<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" class="form">
+		<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data" class="form">
 			<label form="nome">Nome</label>
 			<input type="text" name="nome" id="nome" class="form-control"/>
 
@@ -75,6 +75,9 @@ require_once("config/database.php");
 
 			<label for="preco">Preço</label>
 			<input type="text" name="preco" id="preco" class="form-control"/>
+
+			<label for="imagem">Foto</label>
+			<input type="file" name="imagem" id="imagem"/>
 
 			<div class="pull-right margin-top-1">
 				<input type="submit" value="Salvar" class="btn btn-primary"/>
