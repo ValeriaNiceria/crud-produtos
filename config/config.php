@@ -11,5 +11,5 @@ define("DB_BANCO", "crud_produtos");
 
 /* Autoload de classe */
 function __autoload($Classe) {
-	require_once(__DIR__ . '/crud/' . $Classe . '.class.php');
+	require __DIR__ . '/crud/' . $Classe . '.class.php';
 }

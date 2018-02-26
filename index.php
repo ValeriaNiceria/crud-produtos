@@ -19,6 +19,7 @@
 
 			//Instanciando a classe conecta
 			$Conecta = new Conecta;
+			$Conecta::conn();
 			var_dump($Conecta);
 		?>
 
