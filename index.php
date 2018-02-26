@@ -16,6 +16,10 @@
 		
 		<?php
 			require_once("pag/login.php");
+
+			//Instanciando a classe conecta
+			$Conecta = new Conecta;
+			var_dump($Conecta);
 		?>
 
 	</div>
