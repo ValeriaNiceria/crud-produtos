@@ -17,7 +17,6 @@ require_once("config/database.php");
 <body>
 
 	<div class="container">
-
 		<div class="page-header">
 			<h1>Adicionar Produto</h1>
 		</div>
@@ -32,17 +31,12 @@ require_once("config/database.php");
 				$descricao = (isset($_POST['descricao']) ? htmlspecialchars(strip_tags($_POST['descricao'])) : '');
 				$preco = (isset($_POST['preco']) ? htmlspecialchars(strip_tags($_POST['preco'])) : '');
 				$criado = date('Y-m-d H:i:s');
+				
+				//new 'image' field
 				$imagem = $_FILES['imagem'];
+				$imagemMysql = !empty($imagem['name']) ? sha1_file($imagem['tmp_name']) . "-" . basename($imagem['name']) : "";
+				$imagemMysql = htmlspecialchars(strip_tags($imagemMysql));
 
-				if ($imagem["error"]) {
-			       throw new Exception ("Error: " . $file["error"]);
-			    }
-
-				$dirUploads = "uploads";
-
-				if (!is_dir($dirUploads)) { 
-			        mkdir($dirUploads) or die ("Não foi possível criar a pasta!");
-			    }
 
 				// insert query
 				$query = ("INSERT INTO produtos (nome, descricao, preco, criado, imagem) VALUES (:NOME, :DESCRICAO, :PRECO, :CRIADO, :IMAGEM)");
@@ -55,20 +49,31 @@ require_once("config/database.php");
 		        $stmt->bindParam(':DESCRICAO', $descricao);
 		        $stmt->bindParam(':PRECO', $preco);
 		        $stmt->bindParam(':CRIADO', $criado);
-		        $stmt->bindParam(":IMAGEM", $imagem['name']);
+		        $stmt->bindParam(":IMAGEM", $imagemMysql);
+
+
+				if ($imagem["error"]) {
+			       throw new Exception ("Error: " . $file["error"]);
+			    }
+
+				$dirUploads = "uploads";
+
+				if (!is_dir($dirUploads)) { 
+			        mkdir($dirUploads) or die ("Não foi possível criar a pasta!");
+			    }
+
 		 		
-		 		// Execute the query
-		        if ($stmt->execute()) {
-		        	if (move_uploaded_file($imagem['tmp_name'], $dirUploads . DIRECTORY_SEPARATOR . $imagem['name'])) {
-		        		echo "<div class='alert alert-success'>Upload realizado com sucesso!</div>";
-		        	} else {
-		        		throw new Exception("Não foi possível realizar o upload");
-		        		
-		        	}
-		            $msg_success = "Registro salvo com sucesso.";
-		        } else {
-		            $msg_erro = "Erro ao tentar salvar o registro.";
-		        }
+		 		//move o arquivo para a pasta 'uploads'
+		        if (move_uploaded_file($imagem['tmp_name'], $dirUploads . DIRECTORY_SEPARATOR . $imagem['name'])) {
+		        	// Execute the query
+		        	if ($stmt->execute()) {
+			        	$msg_success = "Registro salvo com sucesso.";
+			        } else {
+			        	$msg_erro = "Erro ao tentar salvar o registro.";
+			        }
+			    } else {
+			        throw new Exception("Erro ao realizar o upload do arquivo!");
+			    }
 		    }
 		} // show error 
 		catch (PDOException $erro) {
