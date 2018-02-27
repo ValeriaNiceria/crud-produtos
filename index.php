@@ -17,10 +17,23 @@
 		<?php
 			require_once("pag/login.php");
 
-			//Instanciando a classe conecta
-			$Conecta = new Conecta;
-			$Conecta::conn();
-			var_dump($Conecta);
+			$Ler = new Ler;
+
+			$Ler->query("produtos");
+
+			echo "<pre>";
+				var_dump($Ler->getResultados());
+			echo "</pre>";
+
+			//Retorna o nome do produto da posição '0' do array
+			var_dump($Ler->getResultados()[0]["nome"]);
+
+			//Pegando diversos dados do array
+			$produto = $Ler->getResultados()[0];
+			extract($produto);
+			echo "<hr/>";
+			echo ("O produto {$nome} tem o valor de R$ {$preco}");
+			
 		?>
 
 	</div>
