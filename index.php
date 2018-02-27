@@ -16,22 +16,16 @@
 		
 		<?php
 			require_once("pag/login.php");
-
-			$Criar = new Criar;
+			
+			$Atualizar = new Atualizar;
 
 			$tabela = "produtos";
+			$dados = "nome = 'Computador', descricao = 'Computador Usado', preco = '1390.99'";
+			$termos = "WHERE id = 1";
 
-			$colunas = "nome, descricao, preco, criado";
+			$Atualizar->query($tabela, $dados, $termos);
 
-			$criado = date('Y-m-d H:i:s');
-
-			$valores = "'Lápis','Lápis preto', 3.60, '{$criado}'";
-
-			$Criar->query($tabela, $colunas, $valores);
-
-			var_dump($Criar->getResultados());
-
-			
+			echo "{$Atualizar->getResultados()} Resultado(s) Atualizado(s)";			
 		?>
 
 	</div>
