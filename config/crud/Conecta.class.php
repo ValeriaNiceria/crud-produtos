@@ -20,6 +20,8 @@ class Conecta {
         if (!isset(self::$SINGLETON)):
             $dsn = "mysql:host=" . self::$DB_SERVIDOR . ";dbname=" . self::$DB_BANCO . ";";
             self::$SINGLETON = new PDO($dsn, self::$DB_USUARIO, self::$DB_SENHA);
+
+            self::$SINGLETON->exec("SET NAMES 'utf8'");
         endif;
         return self::$SINGLETON;
     }

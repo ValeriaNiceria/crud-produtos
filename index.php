@@ -17,22 +17,20 @@
 		<?php
 			require_once("pag/login.php");
 
-			$Ler = new Ler;
+			$Criar = new Criar;
 
-			$Ler->query("produtos");
+			$tabela = "produtos";
 
-			echo "<pre>";
-				var_dump($Ler->getResultados());
-			echo "</pre>";
+			$colunas = "nome, descricao, preco, criado";
 
-			//Retorna o nome do produto da posição '0' do array
-			var_dump($Ler->getResultados()[0]["nome"]);
+			$criado = date('Y-m-d H:i:s');
 
-			//Pegando diversos dados do array
-			$produto = $Ler->getResultados()[0];
-			extract($produto);
-			echo "<hr/>";
-			echo ("O produto {$nome} tem o valor de R$ {$preco}");
+			$valores = "'Lápis','Lápis preto', 3.60, '{$criado}'";
+
+			$Criar->query($tabela, $colunas, $valores);
+
+			var_dump($Criar->getResultados());
+
 			
 		?>
 
