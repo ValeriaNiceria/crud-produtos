@@ -17,15 +17,14 @@
 		<?php
 			require_once("pag/login.php");
 			
-			$Atualizar = new Atualizar;
+			$Excluir = new Excluir;
 
 			$tabela = "produtos";
-			$dados = "nome = 'Computador', descricao = 'Computador Usado', preco = '1390.99'";
-			$termos = "WHERE id = 1";
+			$termos = "WHERE id = 2";
 
-			$Atualizar->query($tabela, $dados, $termos);
+			$Excluir->query($tabela, $termos);
 
-			echo "{$Atualizar->getResultados()} Resultado(s) Atualizado(s)";			
+			echo ("{$Excluir->getResultados()} Resultado(s) Excluído(s)");			
 		?>
 
 	</div>
