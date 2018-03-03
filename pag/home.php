@@ -23,11 +23,10 @@
       </li>
     </ul>
 
-    <nav class="navbar navbar-light bg-light">
-    <form class="form-inline">
-        <button class="btn btn-outline-danger" type="button" name="efetuar_logoff">Sair</button>
+    <form method="post" class="form-inline">
+        <button name="efetuar_logoff" class="btn btn-outline-danger">Sair</button>
     </form>
-    </nav>
+  
   </div>
 </nav>
 
