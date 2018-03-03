@@ -22,6 +22,9 @@ function __autoload($Classe) {
 /* Filtrar post */
 $post = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
+/* Filtrar get */
+$get = filter_input_array(INPUT_GET, FILTER_DEFAULT);
+
 /* Efetuar login*/
 if (isset($_SESSION['login'])) :
 	$login['email'] = $_SESSION['login']['email'];
