@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="assets/css/normalize.css"/>
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="assets/css/style.css"/>
+	<link href="assets/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+
 </head>
 <body>
 	<div class="container-fluid">
