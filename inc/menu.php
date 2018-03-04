@@ -10,10 +10,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="<?= BASE ?>/index.php?pag=produtos">Produtos</a>
+        <a class="nav-link" href="<?= BASE ?>/?pag=produtos">Produtos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?= BASE ?>/index.php?pag=usuarios">Usuários</a>
+        <a class="nav-link" href="<?= BASE ?>/?pag=usuarios">Usuários</a>
       </li>
 
       <li class="nav-item dropdown">
@@ -21,8 +21,8 @@
           Cadastro
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?= BASE ?>/index.php?pag=cadastro_produto">Produto</a>
-          <a class="dropdown-item" href="<?= BASE ?>/index.php?pag=cadastro_usuario">Usuário</a>
+          <a class="dropdown-item" href="<?= BASE ?>/?pag=cadastro_produto">Produto</a>
+          <a class="dropdown-item" href="<?= BASE ?>/?pag=cadastro_usuario">Usuário</a>
         </div>
       </li>
     </ul>
