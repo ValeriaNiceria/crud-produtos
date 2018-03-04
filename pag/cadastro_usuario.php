@@ -1,3 +1,7 @@
+<?php
+require_once('exe/exe_cad_usuario.php');
+?>
+
 <div class="container mt-4" role="document">
     <div class="modal-content">
     <!--Formulário de cadastro-->
@@ -30,7 +34,7 @@
 
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary botao mt-3">
+            <button name="cad_usuario" class="btn btn-primary botao mt-3">
                 <img src="assets/img/save.png" class="mx-2">
                 Salvar
             </button>

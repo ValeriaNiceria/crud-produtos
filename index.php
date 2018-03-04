@@ -18,7 +18,12 @@ if (isset($login)) :
     if (isset($success)) :
         echo "<p><div class='alert alert-success'>" . $success . "</div></p>";
     endif;
+    //mensagem erro
+    if (isset($error)) :
+        echo "<p><div class='alert alert-danger'>" .$error.  "</div></p>";
+    endif;
     
+/* se o usuário não estiver logado redireciona para página de login*/
 else :
     require_once('pag/login.php');
 endif;

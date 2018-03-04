@@ -1,6 +1,5 @@
- <?php require_once('exe/exe_cad_produto.php');
- echo isset($erro) ? "<div class='alert alert-danger'>" . $erro . "</div>" : "";
- ?>
+ <?php require_once('exe/exe_cad_produto.php'); ?>
+ 
  <div class="container mt-4" role="document">
     <div class="modal-content">
     <form method="post">
