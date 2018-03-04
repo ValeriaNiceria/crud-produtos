@@ -13,6 +13,11 @@ if (isset($login)) :
     if (isset($get['pag'])) :
         require_once("pag/{$get['pag']}.php");
     endif;
+
+    //mensagem success
+    if (isset($success)) :
+        echo "<p><div class='alert alert-success'>" . $success . "</div></p>";
+    endif;
     
 else :
     require_once('pag/login.php');
