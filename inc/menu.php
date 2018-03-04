@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light row"> 
-  <a class="navbar-brand" href="<?= BASE ?>">
+  <a class="navbar-brand" href="<?= BASE ?>/?pag=home">
     <img src="assets/img/home.png">
     Painel Administrativo
   </a>

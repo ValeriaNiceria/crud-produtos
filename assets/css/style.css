@@ -1,3 +1,33 @@
 .botao {
     float:  right;
 }
+
+.icon {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+.icon img {
+    padding-top: 30%;
+    padding-left: 35%;
+}
+
+.icon p {
+    padding-top: 20px;
+    text-align: center;
+    color: #000;
+}
+
+.icon-product {
+    background-color: #7FFFD4;
+}
+
+.icon-user {
+    background-color: #87CEFA;
+}
+
+.icon-list {
+    background-color: #FF6347; 
+}

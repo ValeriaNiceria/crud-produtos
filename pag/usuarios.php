@@ -24,7 +24,7 @@
             <td><?= $usuario['nome'] ?></td>
             <td><?= $usuario['email'] ?></td>
             <td>
-                <a href="" class="btn btn-info">ver</a>
+                <a href="" class="btn btn-info">visualizar</a>
             </td>
         </tr>
     <?php endforeach;?>
